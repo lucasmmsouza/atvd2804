@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consultas</title>
+</head>
+<body>
+<h1>Consultas</h1>
+<a th:href="@{/web/consultas/novo}">Nova Consulta</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Data</th><th>Valor</th><th>Observação</th><th>Paciente</th><th>Médico</th><th>Ações</th>
+    </tr>
+    <tr th:each="consulta : ${consultas}">
+        <td th:text="${consulta.id}"></td>
+        <td th:text="${consulta.data}"></td>
+        <td th:text="${consulta.valor}"></td>
+        <td th:text="${consulta.observacao}"></td>
+        <td th:text="${consulta.paciente != null ? consulta.paciente.nome : ''}"></td>
+        <td th:text="${consulta.medico != null ? consulta.medico.nome : ''}"></td>
+        <td>
+            <a th:href="@{'/web/consultas/editar/' + ${consulta.id}}">Editar</a>
+            <a th:href="@{'/web/consultas/excluir/' + ${consulta.id}}">Excluir</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}">Início</a>
+</body>
+</html>
